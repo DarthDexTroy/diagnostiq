@@ -13,9 +13,9 @@ type ExportState = "idle" | "success";
 export default function ActionFooter({ data }: ActionFooterProps) {
   const [exportState, setExportState] = useState<ExportState>("idle");
 
-  const handleExport = () => {
+  const handleExport = async () => {
     if (!data) return;
-    const payload: EMRExportPayload = buildEMRPayload(data);
+    const payload: EMRExportPayload = await buildEMRPayload(data);
     const filename = `emr-export-${new Date().toISOString().slice(0, 19).replace(/:/g, "-")}.json`;
     downloadJSON(filename, payload);
     setExportState("success");
