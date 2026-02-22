@@ -1,0 +1,385 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Axxess Medical Palette - Glassmorphism Theme */
+:root {
+  /* Primary Brand Colors */
+  --axxess-blue: #007BFF;
+  --vital-green: #28A745;
+  --warning-amber: #FFC107;
+  --emergency-red: #DC3545;
+  
+  /* Glassmorphism Effects */
+  --glass-bg: rgba(219, 234, 254, 0.75);
+  --glass-border: rgba(147, 197, 253, 0.4);
+  --blur: blur(12px);
+  --shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.15);
+  
+  /* Legacy Colors for Compatibility */
+  --axxess-cyan: #06B6D4;
+  --axxess-teal: #14B8A6;
+  --vital-emerald: #10B981;
+  --alert-orange: #EA580C;
+  --glass-grey: #F8FAFC;
+  --vital-bg: rgba(40, 167, 69, 0.12);
+  --symptom-bg: rgba(255, 193, 7, 0.12);
+  --diagnosis-bg: rgba(0, 123, 255, 0.12);
+  --highlight-transition: 0.3s all ease-out;
+  --gradient-primary: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+  --gradient-success: linear-gradient(135deg, #28A745 0%, #218838 100%);
+  --gradient-warning: linear-gradient(135deg, #FFC107 0%, #e0a800 100%);
+  --gradient-recording: linear-gradient(135deg, rgba(0, 123, 255, 0.95) 0%, rgba(0, 86, 179, 0.95) 100%);
+}
+
+/* Pediatric (pastel) overrides - Soft Teal Theme with Pill Shapes */
+[data-pediatric="true"] {
+  --axxess-blue: #20B2AA;
+  --vital-green: #90EE90;
+  --warning-amber: #FFE4B5;
+  --emergency-red: #FFB6C1;
+  --glass-bg: rgba(240, 255, 255, 0.75);
+  --glass-grey: #F0FDFA;
+  --gradient-primary: linear-gradient(135deg, #20B2AA 0%, #48D1CC 100%);
+  --gradient-success: linear-gradient(135deg, #90EE90 0%, #98FB98 100%);
+  --gradient-warning: linear-gradient(135deg, #FFE4B5 0%, #FFDAB9 100%);
+}
+
+/* Pediatric Mode: Increase border-radius to 30px for pill-shaped elements */
+[data-pediatric="true"] .glass-card,
+[data-pediatric="true"] .glass-panel,
+[data-pediatric="true"] button,
+[data-pediatric="true"] .medication-card {
+  border-radius: 30px !important;
+}
+
+
+/* Color-coded extracted content - High contrast readable colors */
+.highlight-vital {
+  background: linear-gradient(120deg, rgba(34, 197, 94, 0.25) 0%, rgba(22, 163, 74, 0.3) 100%);
+  box-shadow: 0 0 0 1px rgba(34, 197, 94, 0.6);
+  transition: var(--highlight-transition);
+  border-left: 3px solid #22c55e;
+  color: #052e16;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight-symptom {
+  background: linear-gradient(120deg, rgba(251, 146, 60, 0.25) 0%, rgba(249, 115, 22, 0.3) 100%);
+  box-shadow: 0 0 0 1px rgba(251, 146, 60, 0.6);
+  transition: var(--highlight-transition);
+  border-left: 3px solid #fb923c;
+  color: #431407;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+.highlight-diagnosis {
+  background: linear-gradient(120deg, rgba(59, 130, 246, 0.25) 0%, rgba(37, 99, 235, 0.3) 100%);
+  box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.6);
+  transition: var(--highlight-transition);
+  border-left: 3px solid #3b82f6;
+  color: #1e3a8a;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* Orb - soft medical cyan pulse when idle */
+.orb-pulse {
+  animation: orbPulse 2s ease-in-out infinite;
+}
+@keyframes orbPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(6, 182, 212, 0.6), 0 0 24px 6px rgba(20, 184, 166, 0.3); }
+  50% { box-shadow: 0 0 0 14px rgba(6, 182, 212, 0), 0 0 32px 10px rgba(20, 184, 166, 0.2); }
+}
+
+/* Slide-up animation for Recommended Care card */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+/* Divider pulse when data flows */
+.divider-pulse {
+  animation: dividerPulse 1.2s ease-in-out infinite;
+}
+@keyframes dividerPulse {
+  0%, 100% { opacity: 0.6; background-color: var(--axxess-blue); }
+  50% { opacity: 1; background-color: var(--axxess-blue); box-shadow: 0 0 12px var(--axxess-blue); }
+}
+
+/* Typewriter flow */
+.typewriter-char {
+  animation: typewriterFade 0.08s ease-out forwards;
+}
+@keyframes typewriterFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Jargon-to-simple bounce */
+.jargon-bounce {
+  animation: jargonBounce 0.5s ease-out forwards;
+}
+@keyframes jargonBounce {
+  0% { opacity: 0; transform: translateX(-8px) scale(0.95); }
+  60% { transform: translateX(0) scale(1.05); }
+  100% { opacity: 1; transform: translateX(0) scale(1); }
+}
+
+/* ICD tag bubble rise */
+.icd-bubble {
+  animation: bubbleRise 0.6s ease-out forwards;
+}
+@keyframes bubbleRise {
+  0% { opacity: 0; transform: translateY(12px) scale(0.8); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Vitals progress ring fill */
+.vital-ring {
+  transition: stroke-dashoffset 0.8s ease-out;
+}
+
+/* Export rocket - document shrinks and flies toward EMR */
+.export-packet {
+  animation: packetFly 0.9s ease-in forwards;
+}
+@keyframes packetFly {
+  0% { transform: scale(1); opacity: 1; }
+  25% { transform: scale(0.4); opacity: 1; }
+  100% { transform: translate(-45vw, 42vh) scale(0.12); opacity: 0; }
+}
+.export-success-check {
+  animation: successPop 0.4s ease-out 0.5s forwards;
+  opacity: 0;
+}
+@keyframes successPop {
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* Skeleton shimmer - Patient Portal */
+.skeleton-shimmer {
+  background: linear-gradient(
+    90deg,
+    #e9ecef 0%,
+    #f8f9fa 50%,
+    #e9ecef 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s linear infinite;
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Language globe rotate on change */
+.globe-rotate {
+  animation: globeSpin 0.6s ease-out;
+}
+@keyframes globeSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Glassmorphism Styles */
+.glass-card {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  box-shadow: var(--shadow);
+  border-radius: 16px;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  box-shadow: var(--shadow);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+/* Pulse Animation for Recording Button */
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 20px rgba(0, 123, 255, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+  }
+}
+
+.animate-pulse-ring {
+  animation: pulse-ring 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Fly-In Animation for Medications */
+@keyframes fly-in-up {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.medication-card {
+  animation: fly-in-up 0.5s ease-out forwards;
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  box-shadow: var(--shadow);
+  border-radius: 16px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.medication-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 40px 0 rgba(40, 167, 69, 0.3);
+}
+
+/* Buy Link Button Glow */
+.buy-link-button {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.buy-link-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px var(--vital-green);
+}
+
+/* Data Bridge Pulse Animation */
+@keyframes bridge-pulse {
+  0%, 100% {
+    opacity: 0.5;
+    box-shadow: 0 0 10px var(--axxess-blue);
+  }
+  50% {
+    opacity: 1;
+    box-shadow: 0 0 20px var(--axxess-blue), 0 0 30px var(--axxess-blue);
+  }
+}
+
+.divider-pulse {
+  animation: bridge-pulse 2s ease-in-out infinite;
+}
+
+.transcription-scroll {
+  scroll-behavior: smooth;
+}
+
+/* Ensure mic button is perfectly circular */
+.mic-button-circle {
+  border-radius: 50% !important;
+  overflow: hidden;
+}
+
+.mic-button-circle button {
+  border-radius: 50% !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Export to EMR Animations */
+@keyframes fly-to-emr {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-200px, -100px) scale(0.8);
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate(-400px, -200px) scale(0.3);
+    opacity: 0;
+  }
+}
+
+.animate-fly-to-emr {
+  animation: fly-to-emr 1.2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+@keyframes scale-up {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-scale-up {
+  animation: scale-up 0.5s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.4s cubic-bezier(0.4, 0.0, 0.2, 1) forwards;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 1000px 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Success glow effect */
+@keyframes success-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(40, 167, 69, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(40, 167, 69, 0.8);
+  }
+}
+
+.animate-success-glow {
+  animation: success-glow 1.5s ease-in-out infinite;
+}

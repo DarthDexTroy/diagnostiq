@@ -1,0 +1,5 @@
+# Optional: STT with OpenAI Whisper. Install after main requirements.
+# If pip install fails (e.g. ModuleNotFoundError: pkg_resources), run:
+#   pip install setuptools
+#   pip install --no-build-isolation openai-whisper==20231117
+openai-whisper==20231117
