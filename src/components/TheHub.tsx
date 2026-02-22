@@ -58,6 +58,7 @@ export default function TheHub({
     const barWidth = Math.max(2, (canvas.width - (barCount - 1) * 4) / barCount);
 
     function draw() {
+      if (!ctx) return;
       animationRef.current = requestAnimationFrame(draw);
       analyser.getByteFrequencyData(dataArray);
       
