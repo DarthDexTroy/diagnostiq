@@ -1,0 +1,28 @@
+# fly.toml app configuration file generated for diagnostiq on 2026-02-22T16:35:57Z
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'diagnostiq'
+primary_region = 'iad'
+
+[build]
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[http_service.checks]]
+  interval = "30s"
+  timeout = "10s"
+  grace_period = "30s"
+  method = "GET"
+  path = "/api/health"
+
+[env]
+  PORT = "3000"
+  NEXT_PUBLIC_BACKEND_URL = "http://localhost:8000/api/backend"
